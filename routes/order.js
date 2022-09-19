@@ -2,6 +2,7 @@ const Customer = require("../models/Customer");
 const Order = require("../models/Order");
 const Product = require("../models/Product");
 const { customers } = require("./data");
+const Payment = require("../utils/payment");
 
 const router = require("express").Router();
 
@@ -9,7 +10,8 @@ const router = require("express").Router();
 
 router.post("/", async (req, res) => {
   const newOrder = new Order(req.body);
-  console.log(":::::::new order" + newOrder);
+
+  console.log("::::::: new order is" + newOrder);
 
   ////////////check if customer exist
   let customerId = req.body.customerId;
@@ -26,6 +28,8 @@ router.post("/", async (req, res) => {
   }
   try {
     const savedOrder = await newOrder.save();
+    console.log("Order has been save ");
+    console.log("The send order is: " + Payment(newOrder));
     res.status(200).json(savedOrder);
   } catch (err) {
     res.status(500).json(err);
