@@ -18,3 +18,8 @@ http://localhost:3002/api/orders
 "products":[{"productId":"63274daf427f7a72bc7d57c2"}],
 "amount":3000
 }
+
+## start the worker node by running the following command on terminal
+
+cd utils/
+ode worker.js
