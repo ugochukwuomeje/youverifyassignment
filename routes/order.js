@@ -24,7 +24,6 @@ router.post("/", async (req, res) => {
   } else if (!product) {
     res.status(400).json({ message: "product no longer exist" }); //////////////check if product exist
   }
-
   try {
     const savedOrder = await newOrder.save();
     res.status(200).json(savedOrder);
