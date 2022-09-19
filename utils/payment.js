@@ -2,9 +2,18 @@ const amp = require("amqplib/callback_api");
 const { connection } = require("mongoose");
 
 const Payment = (order) => {
-  let paymentDetails = JSON.stringify(order);
+  let orderDetails = JSON.stringify(order);
 
-  console.log(":::::::::::the order sent is: " + paymentDetails);
+  const paymentDetails = {
+    customerId: order.customerId,
+    productid: order.products[0].productId,
+    orderId: order._id,
+    amunt: order.amount,
+  };
+
+  console.log(
+    ":::::::::::the order sent is: " + JSON.stringify(paymentDetails)
+  );
   amp.connect("amqp://localhost", (connError, connection) => {
     if (connError) {
       throw connError;
