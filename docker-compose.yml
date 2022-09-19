@@ -1,8 +1,8 @@
 version: "3"
 services:
-  server:
-    container_name: server
+  ecommerceapi:
+    container_name: ecommerceapi
     build:
       dockerfile: Dockerfile
     ports:
-      - 3002:3000
+      - 3002:3002
